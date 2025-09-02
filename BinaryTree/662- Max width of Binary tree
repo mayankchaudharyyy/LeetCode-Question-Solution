@@ -7,7 +7,7 @@ class Solution {
 
         int ans = 0;
         Queue<TreeNode> q1 = new LinkedList<>();  
-        Queue<Integer> q2 = new LinkedList<>();  for storing the position
+        Queue<Integer> q2 = new LinkedList<>();   // for storing the position
 
         q1.offer(root);
         q2.offer(0);
