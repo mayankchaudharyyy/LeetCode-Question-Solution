@@ -1,1 +1,41 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Solution {
+    public int widthOfBinaryTree(TreeNode root) {
+        if (root == null) return 0;
+
+        int ans = 0;
+        Queue<TreeNode> q1 = new LinkedList<>();  
+        Queue<Integer> q2 = new LinkedList<>();  for storing the position
+
+        q1.offer(root);
+        q2.offer(0);
+
+        while (!q1.isEmpty()) {
+            int n = q1.size();
+            int left = 0, right = 0;
+
+            for (int i = 0; i < n; i++) {
+                TreeNode cur = q1.poll();
+                int idx = q2.poll();
+
+                if (i == 0) left = idx;
+                if (i == n - 1) right = idx;
+
+                if (cur.left != null) {
+                    q1.offer(cur.left);
+                    q2.offer(2 * idx);
+                }
+                if (cur.right != null) {
+                    q1.offer(cur.right);
+                    q2.offer(2 * idx + 1);
+                }
+            }
+            ans = Math.max(ans, right - left + 1);
+        }
+
+        return ans;
+    }
+}
 
